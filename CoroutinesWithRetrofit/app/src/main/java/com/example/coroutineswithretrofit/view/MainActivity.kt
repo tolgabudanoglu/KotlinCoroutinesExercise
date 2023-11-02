@@ -3,12 +3,12 @@ package com.example.coroutineswithretrofit.view
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
-import androidx.activity.viewModels
+
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.ViewModelProviders
+
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.coroutineswithretrofit.R
+
 import com.example.coroutineswithretrofit.databinding.ActivityMainBinding
 import com.example.coroutineswithretrofit.viewmodel.ListViewModel
 
