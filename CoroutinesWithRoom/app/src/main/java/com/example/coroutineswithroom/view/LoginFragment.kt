@@ -1,4 +1,4 @@
-package com.example.coroutineswithroom
+package com.example.coroutineswithroom.view
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment

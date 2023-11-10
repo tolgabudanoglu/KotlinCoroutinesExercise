@@ -1,8 +1,9 @@
-package com.example.coroutineswithroom
+package com.example.coroutineswithroom.view
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.WindowManager
+import com.example.coroutineswithroom.R
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
