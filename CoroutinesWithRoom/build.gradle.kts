@@ -10,10 +10,12 @@ buildscript {
         classpath ("com.android.tools.build:gradle:3.5.4")
         classpath ("org.jetbrains.kotlin:kotlin-gradle-plugin:")
         classpath("androidx.navigation:navigation-safe-args-gradle-plugin:$nav_version")
+
     }
 }
 
 plugins {
     id("com.android.application") version "8.1.2" apply false
     id("org.jetbrains.kotlin.android") version "1.9.0" apply false
+    kotlin("kapt") version "1.9.20"
 }
