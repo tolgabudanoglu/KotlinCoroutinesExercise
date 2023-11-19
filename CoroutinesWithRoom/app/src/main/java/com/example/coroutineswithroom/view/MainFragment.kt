@@ -1,14 +1,18 @@
 package com.example.coroutineswithroom.view
 
+import android.app.AlertDialog
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.NavDirections
 import androidx.navigation.Navigation
 import com.example.coroutineswithroom.databinding.FragmentMainBinding
+import com.example.coroutineswithroom.model.LoginState
 import com.example.coroutineswithroom.viewmodel.MainViewModel
 
 
@@ -32,6 +36,8 @@ class MainFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+
+        binding.usernameTV.text = LoginState.user?.userName
         binding.signoutBtn.setOnClickListener { onSignout() }
         binding.deleteUserBtn.setOnClickListener { onDelete() }
 
@@ -42,21 +48,36 @@ class MainFragment : Fragment() {
 
     fun observeViewModel() {
         viewModel.signout.observe(viewLifecycleOwner, Observer {
+            Toast.makeText(activity,"signed out",Toast.LENGTH_SHORT).show()
+            goToSignupScreen()
+
 
         })
         viewModel.userDeleted.observe(viewLifecycleOwner, Observer {
+            Toast.makeText(activity,"user deleted",Toast.LENGTH_SHORT).show()
+            goToSignupScreen()
 
         })
     }
-
-    private fun onSignout() {
-        val action = MainFragmentDirections.actionGoToSignup()
+    private fun goToSignupScreen(){
+        val action :NavDirections = MainFragmentDirections.actionGoToSignup()
         Navigation.findNavController(binding.usernameTV).navigate(action)
     }
 
+    private fun onSignout() {
+        viewModel.onSignout()
+    }
+
     private fun onDelete() {
-        val action = MainFragmentDirections.actionGoToSignup()
-        Navigation.findNavController(binding.usernameTV).navigate(action)
+        activity?.let {
+            AlertDialog.Builder(it)
+                .setTitle("DELETE USER")
+                .setMessage("are you sure")
+                .setPositiveButton("yes"){p0,p1 ->viewModel.onDeleteUser()}
+                .setNegativeButton("cancel",null)
+                .create()
+                .show()
+        }
     }
 
 }
